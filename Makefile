@@ -59,7 +59,7 @@ default: $(AFWHAL_TARGET)
 
 $(AFWHAL_TARGET): $(OBJS)
 	@[ -d $(BIN_DIR) ] || mkdir -p $(BIN_DIR)
-	$(CXX) $(LDFLAGS) $(SHARED_CXXFLAGS) $(OBJS) -o $@ $(LDLIBS) $(AFW_DYNAMIC_LIB) $(AFW_HELPER_DYNAMIC_LIB)
+	$(CXX) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS) $(AFW_DYNAMIC_LIB) $(AFW_HELPER_DYNAMIC_LIB)
 
 $(OBJS): $(SRCS)
 	echo Android home is $(ANDROID_HOME)
