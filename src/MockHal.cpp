@@ -25,7 +25,8 @@
 
 int main(int argc, char** argv)
 {
-  std::shared_ptr<Device> pDevice = std::make_shared<Device>();
+  audio_module_handle_t hwModule = {0};
+  std::shared_ptr<Device> pDevice = std::make_shared<Device>(hwModule);
 
 	std::cout << "Device instance : " << pDevice.get() << std::endl;
 	return 0;

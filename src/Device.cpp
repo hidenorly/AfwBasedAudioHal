@@ -16,9 +16,7 @@
 
 #include "Device.hpp"
 
-  std::shared_ptr<StreamManager> mStreamManager;
-
-Device::Device()
+Device::Device(audio_module_handle_t hwModule, std::string filterPlugInPath) : IDevice(hwModule, filterPlugInPath)
 {
   mStreamManager = StreamManager::getInstance().lock();
 }
