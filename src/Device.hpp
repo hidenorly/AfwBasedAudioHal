@@ -37,9 +37,6 @@ public:
 
   virtual HalResult openOutputStream(AudioIoHandle ioHandle, DeviceAddress device, audio_config config, audio_output_flags_t flags, SourceMetadata sourceMetadata, std::shared_ptr<IStreamOut>& pOutStream, audio_config& outSuggestedConfig);
 
-  virtual std::vector<ParameterValue> getParameters(std::vector<std::string> keys);
-  virtual HalResult setParameters(std::vector<ParameterValue> parameters);
-
   virtual bool supportsAudioPatches(void);
   virtual audio_patch_handle_t createAudioPatch(std::vector<audio_port_config> sources, std::vector<audio_port_config> sinks);
   virtual audio_patch_handle_t updateAudioPatch(audio_patch_handle_t previousPatch, std::vector<audio_port_config> sources, std::vector<audio_port_config> sinks);

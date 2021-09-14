@@ -51,16 +51,6 @@ HalResult Device::openOutputStream(AudioIoHandle ioHandle, DeviceAddress device,
   return mStreamManager ? HalResult::OK : NOT_INITIALIZED;
 }
 
-std::vector<ParameterValue> Device::getParameters(std::vector<std::string> keys)
-{
-  return std::vector<ParameterValue>();
-}
-
-HalResult Device::setParameters(std::vector<ParameterValue> parameters)
-{
-  return HalResult::NOT_SUPPORTED;
-}
-
 
 bool Device::supportsAudioPatches(void)
 {
