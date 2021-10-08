@@ -9,7 +9,7 @@ endif
 ifeq ($(UNAME),Darwin)
 	CXX=ccache clang++
 	LDLIBS=-stdlib=libc++
-	CXXFLAGS=-std=c++2a -MMD -MP -Wall
+	CXXFLAGS=-std=c++2a -MMD -MP -Wall -Wno-deprecated-anon-enum-enum-conversion
 #	SHARED_CXXFLAGS= -flat_namespace -dynamiclib
 	SHARED_CXXFLAGS=-dynamiclib
 endif
@@ -29,9 +29,12 @@ ANDROID_HOME := $(shell printenv ANDROID_HOME)
 ANDROID_MEDIA_INC=$(ANDROID_HOME)/system/media/audio/include
 ANDROID_CUTIL_INC=$(ANDROID_HOME)/system/core/libcutils/include
 ANDROID_FMQ_INC=$(ANDROID_HOME)/system/libfmq/include
+ANDROID_FMQ_INC2=$(ANDROID_HOME)/system/libfmq/base
+ANDROID_LIBBASE_INC=$(ANDROID_HOME)/system/libbase/include
 ANDROID_UTILS_INC=$(ANDROID_HOME)/system/core/libutils/include
 ANDROID_HIDL_INC=$(ANDROID_HOME)/system/libhidl/base/include
 ANDROID_LOG_INC=$(ANDROID_HOME)/system/core/liblog/include
+ANDROID_LOG_S_INC=$(ANDROID_HOME)/system/logging/liblog/include
 
 SRC_DIR = ./src
 OBJ_DIR = ./out
@@ -65,7 +68,7 @@ $(OBJS): $(SRCS)
 	echo Android home is $(ANDROID_HOME)
 
 	@[ -d $(OBJ_DIR) ] || mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) -I $(AFW_INC_DIR) -I $(AFW_HELPER_INC) -I $(ANDROID_MEDIA_INC) -I $(ANDROID_CUTIL_INC) -I $(ANDROID_FMQ_INC) -I $(ANDROID_UTILS_INC) -I $(ANDROID_HIDL_INC) -I $(ANDROID_LOG_INC) -c $(SRC_DIR)/$(notdir $(@:.o=.cpp)) -o $@
+	$(CXX) $(CXXFLAGS) -I $(AFW_INC_DIR) -I $(AFW_HELPER_INC) -I $(ANDROID_MEDIA_INC) -I $(ANDROID_CUTIL_INC) -I $(ANDROID_FMQ_INC) -I $(ANDROID_FMQ_INC2) -I $(ANDROID_LIBBASE_INC) -I $(ANDROID_UTILS_INC) -I $(ANDROID_HIDL_INC) -I $(ANDROID_LOG_INC) -I $(ANDROID_LOG_S_INC) -c $(SRC_DIR)/$(notdir $(@:.o=.cpp)) -o $@
 
 -include $(DEPS)
 
